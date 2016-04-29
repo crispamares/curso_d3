@@ -1,0 +1,15 @@
+.car {
+    fill: steelblue;
+    fill-opacity: 0.2;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../rsc/reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+
+  <link rel="stylesheet" href="../rsc/reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="../rsc/style.css"/>
+
+  <link rel="stylesheet" media="print" href="../rsc/reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="../rsc/reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="crear-con-datos" class="titleslide slide level1"><h1>Crear con datos</h1></section></section>
+<section><section id="d3.js" class="titleslide slide level1"><h1>D3.js</h1></section><section id="d3.js-1" class="slide level2">
+<h1>D3.js</h1>
+<ul>
+<li><a href="http://d3js.org/">http://d3js.org/</a></li>
+<li><a href="https://github.com/mbostock/d3/wiki/API-Reference">Referencia del API</a></li>
+</ul>
+</section><section id="setup" class="slide level2">
+<h1>Setup</h1>
+<ul>
+<li>Descargar la plantilla</li>
+<li>Crear una copia de la carpeta por ejercicio</li>
+<li>Desactivar <strong>Caches</strong> en la consola (F12) de Chrome</li>
+</ul>
+</section></section>
+<section><section id="ejercicios" class="titleslide slide level1"><h1>Ejercicios</h1></section><section id="ejercicio-1" class="slide level2">
+<h1>Ejercicio 1</h1>
+<ol type="1">
+<li>Añade al html un: <strong>&lt;h1&gt;</strong> que diga <strong>Hola mundo</strong></li>
+<li>Añade al html un: <strong>&lt;p&gt;</strong> que diga <strong>Texto 1</strong></li>
+<li>Añade al html otro: <strong>&lt;p&gt;</strong> que diga <strong>Texto 2</strong></li>
+<li>Pon en css el <em>background-color</em> del <strong>&lt;body&gt;</strong> de algún color</li>
+<li>Ejecuta el siguiente código en la consola:</li>
+</ol>
+<pre><code>    var paragraphs = document.getElementsByTagName(&quot;p&quot;);
+    for (var i = 0; i &lt; paragraphs.length; i++) {
+        var paragraph = paragraphs.item(i);
+        paragraph.style.setProperty(&quot;color&quot;, &quot;white&quot;, null);
+    }</code></pre>
+<ul>
+<li>¿Qué pasa?</li>
+</ul>
+</section><section id="ejercicio-2" class="slide level2">
+<h1>Ejercicio 2</h1>
+<ol type="1">
+<li>Añade al html un: <strong>&lt;h1&gt;</strong> que diga <strong>Hola mundo</strong></li>
+<li>Añade al html un: <strong>&lt;p&gt;</strong> que diga <strong>Texto 1</strong></li>
+<li><p>Añade al html otro: <strong>&lt;p&gt;</strong> que diga <strong>Texto 2</strong></p></li>
+<li><p>Ejecuta el siguiente código:</p>
+<pre><code>d3.selectAll(&quot;p&quot;).style(&quot;color&quot;, &quot;white&quot;);</code></pre></li>
+<li><p>Ejecuta el siguiente código:</p>
+<pre><code>d3.select(&quot;body&quot;).style(&quot;background-color&quot;, &quot;black&quot;);</code></pre></li>
+</ol>
+<hr> 
+<ul>
+<li>¿Qué hacen <strong>select</strong> y <strong>selectAll</strong>?</li>
+<li>¿Qué hace <strong>style</strong>?</li>
+</ul>
+</section><section id="ejercicio-3" class="slide level2">
+<h1>Ejercicio 3</h1>
+<ol type="1">
+<li>Utiliza <strong>d3.select</strong> para seleccionar el <strong>&lt;body&gt;</strong> y guarda la selección en una variable</li>
+<li>Utiliza el método de la selección <strong>append</strong> para añadir al <strong>&lt;body&gt;</strong> un <strong>&lt;p&gt;</strong>, y guarda su salida (la selección al párrafo añadido) en una variable</li>
+<li>Utiliza el método de la selección <strong>text</strong> para ponerle un texto al párrafo creado.</li>
+</ol>
+</section></section>
+<section><section id="data-bind" class="titleslide slide level1"><h1>Data Bind</h1></section><section id="requisitos" class="slide level2">
+<h1>Requisitos</h1>
+<ul>
+<li><a href="https://github.com/mbostock/d3/wiki/Selections">Selección</a></li>
+<li>Datos</li>
+</ul>
+</section><section id="datos" class="slide level2">
+<h1>Datos</h1>
+<ul>
+<li>Normalmente son <strong>Arrays</strong></li>
+<li>Se pueden <a href="https://github.com/mbostock/d3/wiki/Requests">cargar desde una url</a></li>
+</ul>
+</section><section id="hacer-la-selección" class="slide level2">
+<h1>Hacer la selección</h1>
+<ul>
+<li>Se utilizan los <a href="https://css-tricks.com/how-css-selectors-work/">selectores de CSS</a></li>
+</ul>
+</section><section id="bind-1" class="slide level2">
+<h1>Bind 1</h1>
+<p>Crea varios elementos con <strong>selectAll</strong> y un <strong>Array</strong> de datos</p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)  // Selección vacía
+    .data(datos)
+   .enter()          // Método mágico por ahora
+    .append(&quot;p&quot;)     // Añade el elemento p por cada dato
+    .text(&quot;Tengo texto&quot;);</code></pre>
+<p>Encuentra el __data__ de esos párrafos con <strong>console.log</strong> y <strong>F12</strong></p>
+</section><section id="bind-2" class="slide level2">
+<h1>Bind 2</h1>
+<p>Utilizar los datos para modificar atributos en consecuencia</p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)
+    .data(datos)
+   .enter()
+    .append(&quot;p&quot;)
+    .text(function(d){return d;});</code></pre>
+</section><section class="slide level2">
+
+<ul>
+<li><p>¿Cómo haríais para que escribiera:?</p>
+<pre><code>Párrafo 1
+Párrafo 10
+Párrafo 20
+Párrafo 30      
+Párrafo 40
+Párrafo 50</code></pre></li>
+</ul>
+</section><section id="bind-3" class="slide level2">
+<h1>Bind 3</h1>
+<p>Funciones tan complicadas como queramos</p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)
+    .data(datos)
+   .enter()
+    .append(&quot;p&quot;)
+    .text(function(d){return &quot;Párrafo &quot; + String(d);});</code></pre>
+</section><section id="bind-4" class="slide level2">
+<h1>Bind 4</h1>
+<p>Primer parámetro son los <strong>datos</strong> segundo parámetro los <strong>índices</strong></p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)
+    .data(datos)
+   .enter()
+    .append(&quot;p&quot;)
+    .text(function(d, i){return &quot;Párrafo &quot; + String(i);});</code></pre>
+</section><section id="bind-5" class="slide level2">
+<h1>Bind 5</h1>
+<p>Varios cambios encadenados</p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)
+    .data(datos)
+   .enter()
+    .append(&quot;p&quot;)
+    .text(function(d, i){return &quot;Párrafo &quot; + String(i);})
+    .style(&quot;font-size&quot;, function(d){return String(d)+&quot;px&quot;;});       </code></pre>
+</section><section id="ejercicio-4" class="slide level2">
+<h1>Ejercicio 4</h1>
+<ul>
+<li><p>Basándote en el siguiente código, colorea de rojo los párrafos que tengan datos <strong>superiores a 20</strong></p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)
+    .data(datos)
+   .enter()
+    .append(&quot;p&quot;)
+    .text(function(d){return &quot;Párrafo &quot; + String(d);});</code></pre></li>
+</ul>
+</section><section id="ejercicio-5" class="slide level2">
+<h1>Ejercicio 5</h1>
+<ul>
+<li><p>Basándote en el siguiente código, colorea de rojo los párrafos en posición impar</p>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)
+    .data(datos)
+   .enter()
+    .append(&quot;p&quot;)
+    .text(function(d){return &quot;Párrafo &quot; + String(d);});</code></pre></li>
+</ul>
+</section><section id="ejercicio-6" class="slide level2">
+<h1>Ejercicio 6</h1>
+<ul>
+<li>Añade al CSS una regla que coloree de rojo los párrafos con clase <strong>impar</strong></li>
+<li>Repite le ejercicio 5 pero esta vez añade una clase <strong>impar</strong> a los párrafos impares.</li>
+</ul>
+</section><section id="ejercicio-7" class="slide level2">
+<h1>Ejercicio 7</h1>
+<figure>
+<img src="../rsc/images/ej07.jpg" alt="Crea esto" /><figcaption>Crea esto</figcaption>
+</figure>
+</section><section class="slide level2">
+
+<ul>
+<li>En vez de añadir párrafos añade <strong>div</strong> para crear un diagrama de barras horizontal</li>
+<li>El <strong>height</strong> de los divs debe ser 20px</li>
+<li>El <strong>width</strong> de los divs debe ser 5 veces su dato</li>
+<li>El <strong>margin</strong> de 1px</li>
+<li>El <strong>background-color</strong> debe ser <strong>steelblue</strong></li>
+</ul>
+</section></section>
+<section><section id="cargar-datos-de-un-fichero" class="titleslide slide level1"><h1>Cargar datos de un fichero</h1></section><section id="cargar-datos-de-un-fichero-1" class="slide level2">
+<h1>Cargar datos de un fichero</h1>
+<ul>
+<li><p>La carga es <strong>asíncrona</strong>, se utiliza un <strong>callback</strong>:</p>
+<pre><code>d3.csv(&quot;cars.csv&quot;, function(data) {
+
+    crearVisualizacion(data);
+
+});</code></pre></li>
+</ul>
+</section><section id="ejercicio-8" class="slide level2">
+<h1>Ejercicio 8</h1>
+<ul>
+<li>Carga los datos de <strong>“<a href="data/cars.csv">cars.csv</a>”</strong></li>
+<li>Crea un párrafo con el número de items leídos</li>
+<li>Inspecciona los datos en la consola: <strong>console.log(data)</strong></li>
+</ul>
+</section></section>
+<section><section id="pintar-en-svg" class="titleslide slide level1"><h1>Pintar en SVG</h1></section><section id="svg-es-equivalente-a-html" class="slide level2">
+<h1>SVG es equivalente a HTML</h1>
+<iframe width="100%" height="800" src="http://jsbin.com/gosama/embed?html,output">
+    
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/gosama/embed?html,output" /><figcaption><a href="http://jsbin.com/gosama/embed?html,output">http://jsbin.com/gosama/embed?html,output</a></figcaption>
+</figure>
+</iframe>
+
+
+</section><section id="contenedor-svg" class="slide level2">
+<h1>Contenedor SVG</h1>
+<ul>
+<li><p>Crear el elemento:</p>
+<pre><code>var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;);</code></pre></li>
+<li><p>Siempre con tamaño</p>
+<pre><code>//Se suelen utilizar: Width y height
+var width = 800;
+var height = 600;
+
+svg.attr(&quot;width&quot;, width)
+   .attr(&quot;height&quot;, height);</code></pre></li>
+<li><p>O todo encadenado:</p>
+<pre><code>var svg = d3.select(&quot;body&quot;)
+    .append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, width)
+    .attr(&quot;height&quot;, height); </code></pre></li>
+</ul>
+</section><section id="crear-formas" class="slide level2">
+<h1>Crear formas</h1>
+<ul>
+<li>Selección &gt; Data Binding &gt; Enter &gt; Append</li>
+</ul>
+<pre><code>var datos = [10,20,30,40,50];
+
+var circles = svg.selectAll(&quot;circle&quot;).data(datos);
+
+circles.enter()
+    .append(&quot;circle&quot;);
+
+circles.attr(&quot;cx&quot;, function(d, i) { return (i * 100) + 20; } )
+    .attr(&quot;cy&quot;, height/2)
+    .attr(&quot;r&quot;, function(d) {return d;});</code></pre>
+</section><section id="ejercicio-9" class="slide level2">
+<h1>Ejercicio 9</h1>
+<figure>
+<img src="../rsc/images/ej09.jpg" />
+</figure>
+<ul>
+<li>Colorea los círculos de diferente color:
+<ul>
+<li>El borde (<strong>stroke</strong>) todos iguales de <strong>steelblue</strong></li>
+<li>El relleno (<strong>fill</strong>) sin color (<strong>none</strong>)</li>
+<li>El ancho del borde (<strong>stroke-width</strong>) directamente proporcional a su dato</li>
+</ul></li>
+</ul>
+</section><section id="ejercicio-10" class="slide level2">
+<h1>Ejercicio 10</h1>
+<figure>
+<img src="../rsc/images/ej10.jpg" />
+</figure>
+</section><section class="slide level2">
+
+<ul>
+<li><p>Haz un diagrama de barras <strong>horizontal</strong> en SVG con los pesos de los coches del dataset “cars”</p></li>
+<li><p>Utiliza <strong>map</strong> para recorrer el array de datos y <strong>parseInt</strong> para el casting de string a entero.</p></li>
+</ul>
+<pre><code>    var pesos = datos.map(
+        function(d){
+            return parseInt(d[&#39;weight (lb)&#39;]);
+        }
+    );</code></pre>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../rsc/reveal.js/lib/js/head.min.js"></script>
+  <script src="../rsc/reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        theme: 'simple', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../rsc/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+//          { src: '../rsc/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: '../rsc/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../rsc/reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+
+  <link rel="stylesheet" href="../rsc/reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="../rsc/style.css"/>
+
+  <link rel="stylesheet" media="print" href="../rsc/reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="../rsc/reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="más-allá-del-core" class="titleslide slide level1"><h1>Más allá del core</h1></section><section id="escalas" class="slide level2">
+<h1>Escalas</h1>
+<ul>
+<li><p><strong>Son funciones que nos facilitan el mapeo de datos a variables visuales</strong></p></li>
+<li><p>En el API se llaman <a href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales">scales</a></p></li>
+<li><p>Se utilizan sobre todo para relacionar el <strong>dominio</strong> de los datos con el <strong>rango</strong> de valores que tomarán al mapearlos a píxeles</p></li>
+</ul>
+</section><section class="slide level2">
+
+<pre><code>var w = 500;
+var h = 2000;
+var barMargin = 1;
+
+var svg = d3.select(&quot;.chart&quot;)
+    .append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, w)
+    .attr(&quot;height&quot;, h);
+
+d3.csv(&quot;cars.csv&quot;, function (cars) {
+       render(cars);
+       });
+           
+var render = function(datos) {
+    
+    var weights = datos.map(function(d){
+                return parseInt(d[&#39;weight (lb)&#39;]);});
+
+    /**
+     * Adaptado al alto del SVG
+     * 
+     * El redondeo evita problemas de aliasing
+     */
+    var barWidth = Math.floor( (h / weights.length) - barMargin );
+
+    svg.selectAll(&#39;.bar&#39;)
+    .data(weights)
+      .enter()
+    .append(&#39;rect&#39;)
+    .attr(&#39;class&#39;, &#39;bar&#39;)
+    .attr(&#39;y&#39;, function(d,i) {return i*(barWidth+barMargin);})
+    .attr(&#39;width&#39;, function(d){return d * 0.05;})
+    .attr(&#39;height&#39;, barWidth);
+};</code></pre>
+</section><section id="ejercicio-11" class="slide level2">
+<h1>Ejercicio 11</h1>
+<ul>
+<li>Sobre el código del Ejercicio 10:
+<ul>
+<li>Ajustar los tamaños, horizontales y verticales, de las barras utilizando una <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#linear">escala lineal</a></li>
+</ul></li>
+</ul>
+</section><section id="ejercicio-12" class="slide level2">
+<h1>Ejercicio 12</h1>
+<ul>
+<li>Orienta el diagrama de barras para que las barras queden verticales</li>
+</ul>
+<figure>
+<img src="../rsc/images/ej12.jpg" />
+</figure>
+</section><section id="layouts" class="slide level2">
+<h1>Layouts</h1>
+<ul>
+<li><p>Los <a href="https://github.com/mbostock/d3/wiki/Layouts">layout</a> no son más que una transformación de datos, <strong>no dibujan nada</strong>.</p></li>
+<li><p>Ayudan a calcular los valores de las variables gráficas que van a representar los datos</p></li>
+</ul>
+</section><section id="tooltips" class="slide level2">
+<h1>Tooltips</h1>
+<ul>
+<li><p>Son pequeños textos que nos dan información de detalle sobre un elemento.</p></li>
+<li><p>Se muestran cuando nos posamos sobre algún elemento.</p></li>
+<li><p>La manera más fácil es utilizar el elemento <strong>title</strong> de SVG</p>
+<pre><code>&lt;circle&gt;&lt;title&gt;Este el mensaje del tooltip&lt;/title&gt;&lt;/circle&gt;</code></pre></li>
+</ul>
+</section><section id="ejercicio-13" class="slide level2">
+<h1>Ejercicio 13</h1>
+<figure>
+<img src="../rsc/images/ej13.jpg" />
+</figure>
+</section><section class="slide level2">
+
+<ul>
+<li><p>Utiliza el <strong>layout <a href="https://github.com/mbostock/d3/wiki/Histogram-Layout">histogram</a></strong> para crear un histograma de pesos con 20 barras</p></li>
+<li><p>Para definir los 20 bins utiliza el método <strong>ticks</strong> de tu escala horizontal</p></li>
+<li><p>Añade un tooltip en cada barra con su valor (el peso del coche)</p></li>
+</ul>
+</section><section id="ejes" class="slide level2">
+<h1>Ejes</h1>
+<ul>
+<li><p>Son funciones del módulo <strong>d3.svg</strong> que <strong>pintan</strong> los ejes</p></li>
+<li><p>En el API se llaman <a href="https://github.com/mbostock/d3/wiki/SVG-Axes">axes</a></p></li>
+<li><p>Se utilizan siempre en conjunción con las <strong>escalas</strong></p></li>
+<li><p>Desde la selección del elemento padre ejecutamos nuestro eje ya configurado.</p>
+<pre><code>var yAxis = d3.svg.axis() // Es un clousure
+    .scale(y)
+    .orient(&quot;left&quot;);
+
+svg.call(yAxis);</code></pre></li>
+</ul>
+</section><section class="slide level2">
+
+<ul>
+<li>Es necesario darles un estilo con CSS:</li>
+</ul>
+<pre><code>.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+</code></pre>
+</section><section id="groups-en-svg" class="slide level2">
+<h1>Groups en SVG</h1>
+<ul>
+<li><p>El elemento <strong>g</strong> es sólo un contenedor</p></li>
+<li><p>Se puede utilizar para hacer <strong>capas</strong> (SVG se renderiza con el algoritmo del pintor)</p></li>
+<li><p>Muy utilizado para aplicar <a href="http://tutorials.jenkov.com/svg/svg-transformation.html">transformaciones</a> a muchos elementos</p></li>
+</ul>
+</section><section id="márgenes" class="slide level2">
+<h1>Márgenes</h1>
+<p>Existe una convención para poner márgenes a la gráfica. Útil para poner los ejes en ellos.</p>
+<pre><code>var margin = {top: 10, right: 30, bottom: 30, left: 30};
+var width = 960 - margin.left - margin.right;
+var height = 500 - margin.top - margin.bottom;
+
+var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
+    .attr(&quot;width&quot;, width + margin.left + margin.right)
+    .attr(&quot;height&quot;, height + margin.top + margin.bottom)
+  .append(&quot;g&quot;)
+    .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;);</code></pre>
+</section><section id="ejercicio-14" class="slide level2">
+<h1>Ejercicio 14</h1>
+<figure>
+<img src="../rsc/images/ej14.jpg" />
+</figure>
+</section><section class="slide level2">
+
+<ul>
+<li>Añade dos ejes con <strong><a href="https://github.com/mbostock/d3/wiki/SVG-Axes">svg.axis</a></strong>, a la coordenada X y a la Y</li>
+<li>Utiliza la convención de márgenes para situar los ejes fuera de la gráfica</li>
+<li>Mejora la legibilidad de los ejes con CSS</li>
+</ul>
+</section><section id="ejercicio-15" class="slide level2">
+<h1>Ejercicio 15</h1>
+<figure>
+<img src="../rsc/images/ej15.jpg" />
+</figure>
+</section><section class="slide level2">
+
+<ul>
+<li><p>Scatter plot de “weight (lb)” (eje X) y “0-60 mph (s)” (eje Y)</p></li>
+<li><p>Círculos con radio mapeando el “power (hp)” (escala lineal)</p></li>
+<li><p>Color mapeando el número de cilindros “cylinders” (<a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#category10">category10</a>)</p></li>
+<li><p>Tooltip muestra el nombre “name”</p></li>
+<li><p>Ejes X e Y.</p></li>
+<li><p>Utiliza la convención de márgenes para situar los ejes fuera de la gráfica</p></li>
+</ul>
+</section><section id="interacción" class="slide level2">
+<h1>Interacción</h1>
+<ul>
+<li><p>Cualquier elemento del DOM puede ser interactivo</p></li>
+<li><p>Con d3, cualquier selección tiene un método <strong>on</strong> para capturar eventos y tratarlos con callbacks</p>
+<pre><code>d3.selectAll(&quot;rect&quot;).on(&quot;click&quot;, function(d){});</code></pre></li>
+<li><p><a href="http://www.w3.org/TR/SVG11/interact.html">Lista</a> de eventos comunes en SVG: click, mousedown, mouseup, mouseover, mouseout</p></li>
+<li><p>Funciones útiles: <strong>d3.mouse</strong> y <strong>d3.event</strong></p></li>
+</ul>
+</section><section id="ejercicio-16" class="slide level2">
+<h1>Ejercicio 16</h1>
+<ul>
+<li><p>Utiliza la metaclase “:hover” para dibujar un stroke</p>
+<pre><code>p:hover { color:red; }  /* Código CSS */</code></pre></li>
+<li><p>Cuando se pincha ( on(“click”, callback) ) en un coche se muestra un mensaje con el mandato “alert” que tiene el número de cilindros del coche</p>
+<pre><code>// Prueba en la consola de javascript
+alert(&quot;hola mundo&quot;);</code></pre></li>
+<li><p>Cuando se pasa por encima con el ratón, peso y velocidad se muestran en un “p” arriba de la gráfica</p>
+<ul>
+<li>Añade el p en el html con una clase para identificarlo</li>
+<li>El evento a capturar es <strong>mouseover</strong></li>
+<li>Modifica el <strong>text</strong> del <strong>p</strong> desde d3</li>
+</ul></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="../rsc/reveal.js/lib/js/head.min.js"></script>
+  <script src="../rsc/reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        theme: 'simple', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../rsc/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+//          { src: '../rsc/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: '../rsc/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>

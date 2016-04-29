@@ -1,0 +1,196 @@
+/***********************************************************************
+ *                     Mis modificaciones
+ ***********************************************************************/
+
+body {
+    background-image: url("../rsc/images/U-tad_Marca_Positivo.jpg");
+    background-position: 95% 95%;
+    background-repeat: no-repeat;
+    background-size: 20%;
+}
+
+.reveal mark {
+    background-color: #eee;
+    font-size: 0.8em;
+}
+.reveal mark.jcr {background-color: #98df8a;}
+.reveal mark.ic {background-color: #aec7e8;}
+.reveal mark.submited {background-color: #ffbb78;}
+
+.reveal { color: rgb(27, 27, 27); }
+
+.reveal .slide.level1 h1,
+.reveal h1 {
+    font-size: 2.3em;
+    line-height: 1.3em;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaaaaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 15px 15px rgba(0, 0, 0, 0.15); 
+    margin: 0 0 7% 0;
+    color: #1b91ff;
+}
+
+.reveal .slide.level2 h1,
+.reveal h2 {
+    font-size: 1.75em;    
+    margin: 0 0 7% 0;
+    color: #1b91ff;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #aaaaaa, 0 3px 0px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.1), 0 8px 7px rgba(0, 0, 0, 0.15); 
+}
+
+.reveal h3 {
+    margin: 0 0 7% 0;
+    color: #1b91ff;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbbbbb, 0 4px 0 #aaaaaa, 0 3px 0px rgba(0, 0, 0, 0.1), 0 0 2px rgba(0, 0, 0, 0.1), 0 8px 7px rgba(0, 0, 0, 0.15); 
+}
+
+.reveal h4 {
+    font-size: 1.45em;
+    margin: 0 0 2% 0;
+    color: #1b91ff;
+}
+
+.reveal p {text-align: left;}
+
+.reveal section img {border-width: 0px;}
+.reveal section div.seal img {margin: 0 10px 0 10px; box-shadow: 0 0 0;}
+
+.reveal .slides>section, 
+.reveal .slides>section>section {
+    padding: 0 0 0 0;
+}
+
+.reveal .slides section .fragment.grey { opacity: 0.3; }
+.reveal .slides section .fragment.visible.grey { opacity: 1; }
+
+.alert{  color: #1b91ff; }
+
+.reveal .slides>section.center{ 
+    top: -30%; 
+}
+
+.reveal .slides section.future iframe{
+    display: none;
+}
+
+.reveal ul {line-height: 1.2em;}
+
+.reveal pre {width: 100%;}
+
+.reveal .medium {font-size: 0.8em;}
+
+.reveal .progress {height: 10px;}
+.reveal .progress span {background:  #1b91ff;}
+
+.reveal dt {
+    text-align: left;
+    font-weight: bold;
+    color: #1b91ff;
+    margin: 0 0.5em 0 0;
+  }
+.reveal dl.inline dt {
+    float: left;
+    clear: left;
+    width: 4em;
+    text-align: right;
+    font-weight: bold;
+    color: #1b91ff;
+    margin: 0 0.5em 0 0;
+  }
+.reveal dt:after {
+    content: ":";
+  }
+.reveal dd {
+    text-align: left;
+    margin: 0 0 0 2em;
+  }
+
+.reveal .left { text-align: left; }
+.reveal .mt { margin-top:1.5em; }
+.reveal .mb { margin-bottom:1.5em; }
+
+
+.reveal .ch { margin-left: auto; margin-right: auto;}
+
+
+
+
+.reveal div.multicolumn {
+    -moz-column-count: 2;
+    -moz-column-gap: 50%;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 50%;
+    column-count: 2;
+    column-gap: 50%;
+}
+
+.reveal div.multicolumn3 {
+    -moz-column-count: 3;
+    -moz-column-gap: 33%;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 33%;
+    column-count: 3;
+    column-gap: 33%;
+}
+
+.reveal div.inline {
+    display: inline;
+}
+
+
+
+
+/*-------- Table ---------------*/
+
+.reveal table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0; 
+}
+
+.reveal table th {
+    text-shadow: rgb(153, 153, 153) 1px 1px 2px;
+    padding: 0 1em 0 1em;
+}
+
+.reveal table th,
+.reveal table td {
+    border-style: solid;
+    border-color: rgb(193, 193, 193);
+    border-width: 0px;
+    vertical-align:middle;
+    padding: 0.1em 0.5em 0.1em 0;
+}
+.reveal table th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+.reveal table th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.reveal table th:only-child {
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+
+.white-bg {background-color: white;}
+
+.reveal .slides section .fragment.hidden {
+    display: none;
+    opacity: 1;
+}
+.reveal .slides section .fragment.hidden.visible.no-hidden {
+    display: block;
+}	
+
+.reveal .slides section .fragment.foo {
+    opacity: 1;
+}
+.reveal .slides section .fragment.foo.visible {
+    opacity: 1;
+}	
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../rsc/reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+
+  <link rel="stylesheet" href="../rsc/reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="../rsc/style.css"/>
+
+  <link rel="stylesheet" media="print" href="../rsc/reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="../rsc/reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="enter-update-y-exit" class="titleslide slide level1"><h1>Enter, Update y Exit</h1></section><section id="selección---data" class="slide level2">
+<h1>Selección -&gt; Data</h1>
+<pre><code>var datos = [1,10,20,30,40,50];
+
+var p = d3.select(&#39;body&#39;)
+    .selectAll(&quot;p&quot;)  // Selección vacía o no
+    .data(datos);</code></pre>
+</section><section id="enter" class="slide level2">
+<h1>Enter</h1>
+<ul>
+<li>Normalmente es la rama que tiene los <strong>append</strong></li>
+<li><p>Itera por los datos del array que no tienen un elemento del DOM</p>
+<pre><code>p.enter()
+    .append(&quot;p&quot;)     // Añade el elemento p por cada dato
+    .text(&quot;Tengo texto&quot;);  // Sólo en el momento de la creación</code></pre></li>
+</ul>
+</section><section id="update" class="slide level2">
+<h1>Update</h1>
+<ul>
+<li>Afecta a los elementos del DOM seleccionado</li>
+<li><p>Si se pone después del <strong>enter</strong> afecta <strong>también</strong> a los recién creados</p>
+<pre><code>p.style(&quot;font-size&quot;, function(d){return d+&quot;px&quot;;});</code></pre></li>
+</ul>
+</section><section id="exit" class="slide level2">
+<h1>Exit</h1>
+<ul>
+<li>Normalmente es la rama que tiene los <strong>remove</strong></li>
+<li><p>Afecta a los elementos del DOM que <strong>no tienen</strong> item en el array de datos</p>
+<pre><code>p.exit()
+    .remove();</code></pre></li>
+</ul>
+</section><section id="ejemplo-1" class="slide level2">
+<h1>Ejemplo 1</h1>
+<iframe width="100%" height="800" src="http://jsbin.com/wasor/10/embed?output" frameborder="1" allowfullscreen>
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/wasor/10/embed?output" /><figcaption><a href="http://jsbin.com/wasor/10/embed?output">http://jsbin.com/wasor/10/embed?output</a></figcaption>
+</figure>
+</iframe>
+
+
+</section><section id="ejemplo-2" class="slide level2">
+<h1>Ejemplo 2</h1>
+<iframe width="100%" height="800" src="http://jsbin.com/rumew/1/edit" frameborder="1" allowfullscreen>
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/rumew/1/edit" /><figcaption><a href="http://jsbin.com/rumew/1/edit">http://jsbin.com/rumew/1/edit</a></figcaption>
+</figure>
+</iframe>
+
+</section><section id="transiciones" class="slide level2">
+<h1>Transiciones</h1>
+<ul>
+<li>Un tipo de <a href="https://github.com/mbostock/d3/wiki/Transitions">animaciones</a></li>
+<li>D3 tiene muchos <strong>interpoladores</strong>, para: números, colores, geometrías…</li>
+<li>D3 tiene un surtido de funciones de <a href="https://github.com/mbostock/d3/wiki/Transitions#easing">interpolación</a>:
+<ul>
+<li>linear, poly, quad, cubic, sin, exp, circle, elastic, back, bounce</li>
+</ul></li>
+<li>Las interpolaciones se pueden encadenar</li>
+<li>Además emiten eventos: “start” y “end”</li>
+</ul>
+</section><section id="ejemplo-3" class="slide level2">
+<h1>Ejemplo 3</h1>
+<iframe width="100%" height="800" src="http://jsbin.com/retod/1/embed?output" frameborder="1" allowfullscreen>
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/retod/1/embed?output" /><figcaption><a href="http://jsbin.com/retod/1/embed?output">http://jsbin.com/retod/1/embed?output</a></figcaption>
+</figure>
+</iframe>
+
+</section><section id="ejemplo-4" class="slide level2">
+<h1>Ejemplo 4</h1>
+<iframe width="100%" height="800" src="http://jsbin.com/focav/3/embed?output" frameborder="1" allowfullscreen>
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/focav/3/embed?output" /><figcaption><a href="http://jsbin.com/focav/3/embed?output">http://jsbin.com/focav/3/embed?output</a></figcaption>
+</figure>
+</iframe>
+
+
+</section></section>
+    </div>
+  </div>
+
+  <script src="../rsc/reveal.js/lib/js/head.min.js"></script>
+  <script src="../rsc/reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        theme: 'simple', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../rsc/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+//          { src: '../rsc/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: '../rsc/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>

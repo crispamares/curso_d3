@@ -1,0 +1,9 @@
+div {
+    background-color: steelblue;
+    color: white;
+    margin: 1px;
+    height: 20px;
+    
+    text-align: right;
+    padding: 4px;
+}

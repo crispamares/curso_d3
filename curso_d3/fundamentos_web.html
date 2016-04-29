@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../rsc/reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+
+  <link rel="stylesheet" href="../rsc/reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="../rsc/style.css"/>
+
+  <link rel="stylesheet" media="print" href="../rsc/reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="../rsc/reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="fundamentos-de-la-web" class="titleslide slide level1"><h1>Fundamentos de la web</h1></section><section id="esquema-básico-web" class="slide level2">
+<h1>Esquema básico web</h1>
+<ul>
+<li>Cliente/Servidor</li>
+<li>Navegador y Servidor hablan http</li>
+<li>Cliente pide una <strong>url</strong> y el servidor le devuelve el <strong>archivo</strong> correspondiente
+<ul>
+<li>html</li>
+<li>css</li>
+<li>js</li>
+<li>json, xml</li>
+<li>jpg, png, gif, pdf, mpeg … (lo que sea)</li>
+</ul></li>
+</ul>
+</section><section class="slide level2">
+
+<ul>
+<li class="fragment">¿Dónde está php, java, python o ruby?</li>
+<li class="fragment">¿Dónde se ejecuta javascript?</li>
+</ul>
+</section><section id="html" class="slide level2">
+<h1>HTML</h1>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Page Title&lt;/h1&gt;
+        &lt;p&gt;This is a really interesting paragraph.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>Muchos <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Elementos</a></p>
+<p>Estructura y contenido. <strong>NO estilo</strong></p>
+</section><section class="slide level2">
+
+<p>Atributos:</p>
+<pre><code>&lt;a href=&quot;http://d3js.org/&quot;&gt;The D3 website&lt;/a&gt;</code></pre>
+<p>Clases:</p>
+<pre><code>&lt;p class=&quot;importante&quot;&gt; Se termina la corrupción &lt;/p&gt; </code></pre>
+<p>Ids:</p>
+<pre><code>&lt;div id=&quot;contenido&quot;&gt;&lt;/div&gt; </code></pre>
+<p>Comentarios:</p>
+<pre><code>&lt;!-- Esto está comentado --&gt; </code></pre>
+</section><section id="dom" class="slide level2">
+<h1>DOM</h1>
+<p>Jerarquía (o árbol) con padres, hijos, vecinos, ascendientes y descendientes.</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Breaking News&lt;/h1&gt;
+        &lt;p&gt;&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><strong>Abre la herramienta de desarrollo de tu navegador: F12</strong></p>
+</section><section id="modelo-de-cajas" class="slide level2">
+<h1>Modelo de cajas</h1>
+<ul>
+<li>Todo está en cajas.</li>
+<li><p>Los principales: <strong>div</strong> y <strong>span</strong></p>
+<pre><code>display:block, display:inline, display:none</code></pre></li>
+<li><p>Margin, Border y Padding</p></li>
+</ul>
+</section><section id="css" class="slide level2">
+<h1>CSS</h1>
+<pre><code>body {
+    background-color: black;
+    color: white;
+}</code></pre>
+<p>Siempre esto:</p>
+<pre><code>selector[, selector2, selector3, ...] {
+    propiedad: valor;
+    propiedad: valor;
+    propiedad: valor;
+    propiedad: valor;
+}</code></pre>
+</section><section id="selectores" class="slide level2">
+<h1>Selectores</h1>
+<p>Por etiqueta</p>
+<pre><code>div         /* Selecciona todos los divs                       */</code></pre>
+<p>Por clase</p>
+<pre><code>.importante /* Selecciona todo lo que tenga clase &quot;importante&quot; */
+div.importante /* Sólo div con clase &quot;importante&quot;              */
+.uno.dos    /* Con varias clases                               */</code></pre>
+<p>Por ID</p>
+<pre><code>#contenido  /* El único elemento con id &quot;contenido&quot;            */
+#contenido.seleccionado /* Sólo cuando tiene esa clase         */</code></pre>
+</section><section id="estilos" class="slide level2">
+<h1>Estilos</h1>
+<ul>
+<li><p>Una lista enorme de <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">propiedades</a></p></li>
+<li>Color:
+<ul>
+<li>Colores con nombre: orange</li>
+<li>Hex: #3388aa o #38a</li>
+<li>RGB: rgb(10, 150, 20)</li>
+<li>RGB con alpha: rgba(10, 150, 20, 0.5)</li>
+</ul></li>
+<li>Medidas:
+<ul>
+<li>630px</li>
+<li>23m</li>
+<li>45%</li>
+</ul></li>
+</ul>
+</section><section id="section" class="slide level2">
+<h1></h1>
+<iframe width="100%" height="800" src="http://jsbin.com/cuxuc/6/embed">
+    
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/cuxuc/6/embed" /><figcaption><a href="http://jsbin.com/cuxuc/6/embed">http://jsbin.com/cuxuc/6/embed</a></figcaption>
+</figure>
+</iframe>
+
+</section><section id="dónde-poner-los-estilos" class="slide level2">
+<h1>¿Dónde poner los estilos?</h1>
+<ul>
+<li><p>Nunca:</p>
+<pre><code>&lt;p style=&quot;color: blue; font-size: 48px; 
+          font-style: italic;&quot;&gt;No hacer&lt;/p&gt;</code></pre></li>
+<li><p>Embebidos en el <strong>head</strong>:</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+    div {
+        background-color: red;
+        font-size: 24px;
+        font-weight: bold;
+    }
+&lt;/style&gt;</code></pre></li>
+</ul>
+</section><section id="dónde-poner-los-estilos-1" class="slide level2">
+<h1>¿Dónde poner los estilos?</h1>
+<ul>
+<li><p>Mejor en su archivo:</p>
+<pre><code>&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;</code></pre></li>
+<li><p>Se aplican en <strong>cascada</strong>:</p>
+<pre><code>&lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;sobrescribe.css&quot;&gt;          
+&lt;/head&gt;</code></pre></li>
+</ul>
+</section><section id="javascript" class="slide level2">
+<h1>Javascript</h1>
+<ul>
+<li>Interpretado</li>
+<li>Dinámico</li>
+<li>NO tipado</li>
+</ul>
+<hr>
+
+<ul>
+<li>Mala fama… medio merecida (mejor es2015)</li>
+<li>Súper optimizado</li>
+</ul>
+</section><section id="dónde-poner-el-código-javascript" class="slide level2">
+<h1>¿Dónde poner el código javascript?</h1>
+<ul>
+<li><p>Embebido en el <strong>body</strong>:</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
+    alert(&quot;Hello, world!&quot;);
+&lt;/script&gt;</code></pre></li>
+<li><p>Mejor en su archivo (head o body):</p>
+<pre><code>&lt;script rel=&quot;text/javascript&quot; href=&quot;micodgio.js&quot;&gt;
+&lt;/script&gt;</code></pre></li>
+</ul>
+</section><section id="tipos" class="slide level2">
+<h1>Tipos</h1>
+<ul>
+<li class="fragment">Variables</li>
+<li class="fragment">Strings</li>
+<li class="fragment">Arrays</li>
+<li class="fragment">Objectos</li>
+<li class="fragment">Funciones
+<ul>
+<li class="fragment">lambdas y nombradas</li>
+<li class="fragment">clousures</li>
+<li class="fragment">callbacks</li>
+</ul></li>
+<li class="fragment">JSON</li>
+</ul>
+</section><section id="ojo-fallos-comunes" class="slide level2">
+<h1>Ojo, fallos comunes</h1>
+<ul>
+<li class="fragment">No se define el tipo, una variable puede cambiar su tipo sin más</li>
+<li class="fragment">Elevado de la declaración de variables</li>
+<li class="fragment">El ámbito de las variables es la función</li>
+<li class="fragment">Si no pones <em>var</em> se declara como varable <em>global</em>. En <em>window</em></li>
+</ul>
+</section><section id="section-1" class="slide level2">
+<h1></h1>
+<iframe width="100%" height="800" src="http://jsbin.com/nosuz/5/embed?js,console">
+    
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/nosuz/5/embed?js,console" /><figcaption><a href="http://jsbin.com/nosuz/5/embed?js,console">http://jsbin.com/nosuz/5/embed?js,console</a></figcaption>
+</figure>
+</iframe>
+
+
+</section><section id="svg" class="slide level2">
+<h1>SVG</h1>
+<ul>
+<li>Imagen vectorial basada en texto</li>
+<li><p><strong>Se puede embeber en el DOM</strong></p>
+<pre><code>&lt;svg witdth=&quot;800px&quot; height=&quot;600px&quot;&gt; &lt;/svg&gt;</code></pre></li>
+<li>También afectado por CSS
+<ul>
+<li>fill</li>
+<li>stroke</li>
+<li>stroke-width</li>
+<li>opacity</li>
+</ul></li>
+<li><p>Mucho material en este <a href="http://tutorials.jenkov.com/svg/index.html">manual</a></p></li>
+</ul>
+</section><section id="ejemplo-svg" class="slide level2">
+<h1>Ejemplo SVG</h1>
+<pre><code>&lt;svg width=&quot;800&quot; height=&quot;500&quot;&gt;
+    &lt;circle cx=&quot;25&quot; cy=&quot;25&quot; r=&quot;22&quot;
+            fill=&quot;blue&quot; stroke=&quot;gray&quot; stroke-width=&quot;2&quot;/&gt;
+
+    &lt;line x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;500&quot; y2=&quot;50&quot; stroke=&quot;black&quot;/&gt;
+
+&lt;/svg&gt;</code></pre>
+</section><section id="section-2" class="slide level2">
+<h1></h1>
+<iframe width="100%" height="800" src="http://jsbin.com/meruf/4/embed?html,output">
+    
+<figure>
+<img src="../rsc/images/link.png" alt="http://jsbin.com/meruf/4/embed?html,output" /><figcaption><a href="http://jsbin.com/meruf/4/embed?html,output">http://jsbin.com/meruf/4/embed?html,output</a></figcaption>
+</figure>
+</iframe>
+
+
+</section></section>
+    </div>
+  </div>
+
+  <script src="../rsc/reveal.js/lib/js/head.min.js"></script>
+  <script src="../rsc/reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        theme: 'simple', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../rsc/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../rsc/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+//          { src: '../rsc/reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: '../rsc/reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>
