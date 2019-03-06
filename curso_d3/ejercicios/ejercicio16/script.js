@@ -25,35 +25,30 @@ var mainG = svg.append('g')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("cars.csv", function (cars) {
-	   render(cars);
-       });
+d3.csv("cars.csv").then(cars => {
+	render(cars);
+});
 	       
 var render = function(datos) {
     
-    var x = d3.scale.linear()
+    var x = d3.scaleLinear()
 	.domain([0, d3.max(datos, function(d){return parseInt(d['weight (lb)']);})]) 
 	.range([0, w]);
 
-    var y = d3.scale.linear()
+    var y = d3.scaleLinear()
 	.domain([0, d3.max(datos, function(d){return parseInt(d['0-60 mph (s)']);})])  
 	.range([h, 0]); 
 
-    var r = d3.scale.linear()  
+    var r = d3.scaleLinear()  
 	.domain([d3.min(datos, function(d){return parseInt(d['power (hp)']);}),
 	         d3.max(datos, function(d){return parseInt(d['power (hp)']);})])  
 	.range([2, 10]); 
 
-    var c = d3.scale.category10() 
+    var c = d3.scaleOrdinal(d3.schemeCategory10)
 	.domain(d3.set(datos, function(d){return d['cylinders'];}).values());
 
-    var xAxis = d3.svg.axis()  
-	.scale(x)
-	.orient("bottom");
-
-    var yAxis = d3.svg.axis()  
-	.scale(y)
-	.orient("left");
+    var xAxis = d3.axisBottom(x);  // Eje x
+    var yAxis = d3.axisLeft(y);  // Eje y
 
     mainG.append("g")
 	.attr("class", "x axis")

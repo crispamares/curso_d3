@@ -12,7 +12,7 @@ var svg = d3.select(".chart")
     .attr("width", w)
     .attr("height", h);
 
-d3.csv("cars.csv", function (cars) {
+d3.csv("cars.csv").then(cars => {
 	   render(cars);
        });
 	       
@@ -23,11 +23,11 @@ var render = function(datos) {
 
     var barWidth = h / weights.length; // Más simple
 
-    var x = d3.scale.linear()
+    var x = d3.scaleLinear()
 	.domain([0, d3.max(weights)])
 	.range([0, w]);
 
-    var y = d3.scale.linear()
+    var y = d3.scaleLinear()
 	.domain([0, weights.length])
 	.range([0, h]);// rangeRound saca números enteros
 

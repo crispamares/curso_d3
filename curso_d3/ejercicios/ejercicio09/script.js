@@ -11,9 +11,9 @@ var svg = d3.select("body")
 var circles = svg.selectAll("circle").data(datos);
 
 circles.enter()
-    .append("circle");
-
-circles.attr("cx", function(d, i) { return (i * 100) + 20; } )
+    .append("circle")
+  .merge(circles)
+    .attr("cx", function(d, i) { return (i * 100) + 20; } )
     .attr("cy", height/2)
     .attr("r", function(d) {return d;})
     .style("stroke", "steelblue")  // Igual ponerlo en CSS

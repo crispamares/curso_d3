@@ -8,7 +8,7 @@ var svg = d3.select(".chart")
     .attr("width", w)
     .attr("height", h);
 
-d3.csv("cars.csv", function (cars) {
+d3.csv("cars.csv").then(cars => {
 	   render(cars);
        });
 	       
