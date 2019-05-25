@@ -216,7 +216,7 @@ d3.select(&#39;body&#39;)
 <h1>Cargar datos de un fichero</h1>
 <ul>
 <li><p>La carga es <strong>asíncrona</strong>, se utiliza un <strong>callback</strong>:</p>
-<pre><code>d3.csv(&quot;cars.csv&quot;, function(data) {
+<pre><code>d3.csv(&quot;cars.csv&quot;).then(function(data) {
 
     crearVisualizacion(data);
 
