@@ -28,7 +28,7 @@
 <h1>Escalas</h1>
 <ul>
 <li><p><strong>Son funciones que nos facilitan el mapeo de datos a variables visuales</strong></p></li>
-<li><p>En el API se llaman <a href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales">scales</a></p></li>
+<li><p>En el API se llaman <a href="https://github.com/d3/d3/blob/master/API.md#scales-d3-scale">scales</a></p></li>
 <li><p>Se utilizan sobre todo para relacionar el <strong>dominio</strong> de los datos con el <strong>rango</strong> de valores que tomarán al mapearlos a píxeles</p></li>
 </ul>
 </section><section class="slide level2">
@@ -42,7 +42,7 @@ var svg = d3.select(&quot;.chart&quot;)
     .attr(&quot;width&quot;, w)
     .attr(&quot;height&quot;, h);
 
-d3.csv(&quot;cars.csv&quot;, function (cars) {
+d3.csv(&quot;cars.csv&quot;).then(function (cars) {
        render(cars);
        });
            
@@ -72,7 +72,7 @@ var render = function(datos) {
 <ul>
 <li>Sobre el código del Ejercicio 10:
 <ul>
-<li>Ajustar los tamaños, horizontales y verticales, de las barras utilizando una <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales#linear">escala lineal</a></li>
+<li>Ajustar los tamaños, horizontales y verticales, de las barras utilizando una <a href="https://github.com/d3/d3-scale/blob/v2.2.2/README.md#linear-scales">escala lineal</a></li>
 </ul></li>
 </ul>
 </section><section id="ejercicio-12" class="slide level2">
@@ -86,7 +86,7 @@ var render = function(datos) {
 </section><section id="layouts" class="slide level2">
 <h1>Layouts</h1>
 <ul>
-<li><p>Los <a href="https://github.com/mbostock/d3/wiki/Layouts">layout</a> no son más que una transformación de datos, <strong>no dibujan nada</strong>.</p></li>
+<li><p>Los layout no son más que una transformación de datos, <strong>no dibujan nada</strong>.</p></li>
 <li><p>Ayudan a calcular los valores de las variables gráficas que van a representar los datos</p></li>
 </ul>
 </section><section id="tooltips" class="slide level2">
@@ -105,27 +105,25 @@ var render = function(datos) {
 </section><section class="slide level2">
 
 <ul>
-<li><p>Utiliza el <strong>layout <a href="https://github.com/mbostock/d3/wiki/Histogram-Layout">histogram</a></strong> para crear un histograma de pesos con 20 barras</p></li>
+<li><p>Utiliza la <strong>transformation <a href="https://github.com/d3/d3/blob/master/API.md#histograms">histogram</a></strong> para crear un histograma de pesos con 20 barras</p></li>
 <li><p>Para definir los 20 bins utiliza el método <strong>ticks</strong> de tu escala horizontal</p></li>
 <li><p>Añade un tooltip en cada barra con su valor (el peso del coche)</p></li>
 </ul>
 </section><section id="ejes" class="slide level2">
 <h1>Ejes</h1>
 <ul>
-<li><p>Son funciones del módulo <strong>d3.svg</strong> que <strong>pintan</strong> los ejes</p></li>
-<li><p>En el API se llaman <a href="https://github.com/mbostock/d3/wiki/SVG-Axes">axes</a></p></li>
+<li><p>Son funciones del módulo <strong>d3-axis</strong> que <strong>pintan</strong> los ejes</p></li>
+<li><p>En el API se llaman <a href="https://github.com/d3/d3/blob/master/API.md#axes-d3-axis">axes</a></p></li>
 <li><p>Se utilizan siempre en conjunción con las <strong>escalas</strong></p></li>
 <li><p>Desde la selección del elemento padre ejecutamos nuestro eje ya configurado.</p>
-<pre><code>var yAxis = d3.svg.axis() // Es un clousure
-    .scale(y)
-    .orient(&quot;left&quot;);
+<pre><code>var yAxis = d3.axisLeft(scale);
 
 svg.call(yAxis);</code></pre></li>
 </ul>
 </section><section class="slide level2">
 
 <ul>
-<li>Es necesario darles un estilo con CSS:</li>
+<li>Se puede darles un estilo con CSS:</li>
 </ul>
 <pre><code>.axis text {
   font: 10px sans-serif;
@@ -165,9 +163,8 @@ var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
 </section><section class="slide level2">
 
 <ul>
-<li>Añade dos ejes con <strong><a href="https://github.com/mbostock/d3/wiki/SVG-Axes">svg.axis</a></strong>, a la coordenada X y a la Y</li>
+<li>Añade dos ejes con <strong><a href="https://github.com/d3/d3/blob/master/API.md#axes-d3-axis">d3-axis</a></strong>, a la coordenada X y a la Y</li>
 <li>Utiliza la convención de márgenes para situar los ejes fuera de la gráfica</li>
-<li>Mejora la legibilidad de los ejes con CSS</li>
 </ul>
 </section><section id="ejercicio-15" class="slide level2">
 <h1>Ejercicio 15</h1>
@@ -179,7 +176,7 @@ var svg = d3.select(&quot;body&quot;).append(&quot;svg&quot;)
 <ul>
 <li><p>Scatter plot de “weight (lb)” (eje X) y “0-60 mph (s)” (eje Y)</p></li>
 <li><p>Círculos con radio mapeando el “power (hp)” (escala lineal)</p></li>
-<li><p>Color mapeando el número de cilindros “cylinders” (<a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#category10">category10</a>)</p></li>
+<li><p>Color mapeando el número de cilindros “cylinders” (<a href="https://github.com/d3/d3-scale-chromatic/blob/v1.3.3/README.md#schemeCategory10">category10</a>)</p></li>
 <li><p>Tooltip muestra el nombre “name”</p></li>
 <li><p>Ejes X e Y.</p></li>
 <li><p>Utiliza la convención de márgenes para situar los ejes fuera de la gráfica</p></li>
